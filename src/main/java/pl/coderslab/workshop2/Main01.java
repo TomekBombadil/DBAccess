@@ -12,9 +12,9 @@ public class Main01 {
 
         //test create
 //        User user1 = new User();
-//        user1.setEmail("cvcb@gmail.com");
-//        user1.setUserName("mmmmmm");
-//        user1.setPassword("f7f77tv");
+//        user1.setEmail("yctyty@gmail.com");
+//        user1.setUserName("767767vvvv");
+//        user1.setPassword("m[ppppoopm", true);
 //        System.out.println(user1);
 //        user1=userDao.create(user1);
 //        System.out.println(user1);
@@ -30,7 +30,7 @@ public class Main01 {
 //        System.out.println(readUser);
 //        readUser.setUserName("XXXX");
 //        readUser.setEmail("XXXX@DUPA");
-//        readUser.setPassword("rtfgvbnm,,");
+//        readUser.setPassword("rtfgvbnm,,", true);
 //        userDao.update(readUser);
 //        readUser=userDao.read(1);
 //        System.out.println(readUser);

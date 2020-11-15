@@ -22,7 +22,7 @@ public class UserDao {
             PreparedStatement stmt = conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getUserName());
-            stmt.setString(3, hashPassword(user.getPassword()));
+            stmt.setString(3, user.getPassword());
             int recCount = stmt.executeUpdate();
             System.out.println("Dodano " + recCount + " rekord");
             ResultSet rs = stmt.getGeneratedKeys();
@@ -49,7 +49,7 @@ public class UserDao {
                 selectedUser.setId(rs.getLong("id"));
                 selectedUser.setEmail(rs.getString("email"));
                 selectedUser.setUserName(rs.getString("username"));
-                selectedUser.setPassword(rs.getString("password"));
+                selectedUser.setPassword(rs.getString("password"), false);
             }
         }
         catch(SQLException se){
@@ -64,7 +64,7 @@ public class UserDao {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_QUERY);
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getUserName());
-            stmt.setString(3, hashPassword(user.getPassword()));
+            stmt.setString(3, user.getPassword());
             stmt.setLong(4, user.getId());
             int recCount = stmt.executeUpdate();
             System.out.println("Zmieniono " + recCount + " rekord");
@@ -96,7 +96,7 @@ public class UserDao {
                 readUser.setId(rs.getLong("id"));
                 readUser.setEmail(rs.getString("email"));
                 readUser.setUserName(rs.getString("username"));
-                readUser.setPassword(rs.getString("password"));
+                readUser.setPassword(rs.getString("password"), false);
                 foundUsers = addUserToArray(readUser, foundUsers);
             }
         }
@@ -107,7 +107,7 @@ public class UserDao {
         return foundUsers;
     }
 
-    private String hashPassword(String password){
+    static String hashPassword(String password){
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
